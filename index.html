@@ -8,15 +8,12 @@
     <title>Memory</title>
     <meta name="description" content="">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    
+
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="./resources/css/reset.css">
     <link rel="stylesheet" href="./resources/css/style.css">
     <script src="./resources/js/memory.lib.js"></script>
     <script>
-
-
-
         var voc = [
             ['dog', 'Hund'],
             ['cat', 'Katze'] //,
@@ -37,9 +34,6 @@
 
 
         } //onload
-
-
-
     </script>
 </head>
 
@@ -51,7 +45,7 @@
 
     <!-- INFO SECTION Start -->
     <section class="info" id="info">
-        <h1>Welcome to the great Memory Game</h1>
+        <h1>The great Memory Game</h1>
         <button class="start">Start</button>
         <h3>Shorttime - History</h3>
 
@@ -67,11 +61,15 @@
             <tbody>
                 <tr>
                     <td>Thomas</td>
-                    <td><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></td>
+                    <td>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </td>
                     <td>Züge</td>
                     <td>Minuten</td>
-                <!-- Dynamisch Generierter Inhalt -->
-            </tr>
+                    <!-- Dynamisch Generierter Inhalt -->
+                </tr>
             </tbody>
         </table>
     </section>
@@ -80,25 +78,33 @@
 
 
     <!-- GAME SECTION Start -->
-    <section id="game">
+    <section class="game" id="game">
+        <h1>Memory Game</h1>
         <section class="score-panel">
-            <ul class="stars">
-                <li>
-                    <i class="fa fa-star"></i>
-                </li>
-                <li>
-                    <i class="fa fa-star"></i>
-                </li>
-                <li>
-                    <i class="fa fa-star"></i>
-                </li>
-            </ul>
+            <div class="score">
+                <ul class="stars">
+                    <li>
+                        <i class="fa fa-star"></i>
+                    </li>
+                    <li>
+                        <i class="fa fa-star"></i>
+                    </li>
+                    <li>
+                        <i class="fa fa-star"></i>
+                    </li>
+                </ul>
 
-            <span class="moves">3</span> Moves
 
+                <p>
+                    <span class="moves">3</span> Moves
+                </p>
+            </div>
             <div class="restart">
                 <i class="fa fa-repeat"></i>
             </div>
+        </section>
+        <section class="board">
+
         </section>
     </section>
     <!-- GAME SECTION Start -->
