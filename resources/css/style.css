@@ -8,6 +8,7 @@ body {
 
 h1 {
     font-size: 4rem;
+    padding: 3rem;
 }
 
 h2 {
@@ -16,6 +17,7 @@ h2 {
 
 h3 {
     font-size: 2.17rem;
+    margin: 3rem;
 }
 
 h4 {
@@ -31,6 +33,38 @@ p {
 /****************************************
 ***********   INFO SECTION   ************
 ****************************************/
+
+.info {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.start {
+    width: 7rem;
+    height: 4rem;
+    margin: 5rem;
+}
+
+tr {
+    
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding: 20px;
+}
+
+th {
+    width: 8rem;
+    height: 3rem;
+}
+
+th:first-child {
+    width: 25rem;
+}
 
 /****************************************
 ***********   GAME SECTION   ************
