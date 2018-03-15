@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Memory</title>
+    <meta name="description" content="">
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <link rel="stylesheet" href="./resources/css/style.css">
+    <script src="./resources/js/memory.lib.js"></script>
+    <script>
+
+
+
+        var voc = [
+            ['dog', 'Hund'],
+            ['cat', 'Katze'] //,
+            //['snake', 'Schlange'],
+            //['lion', 'Löwe'],
+            //['mouse', 'Maus'],
+            //['bug', 'Käfer'],
+            //['ant', 'Ameise'],
+            //['horse', 'Pferd'],
+            //['cow', 'Kuh'],
+            //['sheep', 'Schaf']
+        ];
+
+
+
+        window.onload = function () {
+
+
+
+        } //onload
+
+
+
+    </script>
+</head>
+
+
+
+<body>
+
+
+
+    <!-- INFO SECTION Start -->
+    <section id="info">
+        <h1>Welcome to the great Memory Game</h1>
+        <button>Start</button>
+        <h2>Shorttime - History</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Züge</th>
+                    <th>Minuten</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamisch Generierter Inhalt -->
+            </tbody>
+        </table>
+    </section>
+    <!-- WELCOME SECTION END -->
+
+
+
+    <!-- GAME SECTION Start -->
+    <section id="game">
+        <section class="score-panel">
+            <ul class="stars">
+                <li>
+                    <i class="fa fa-star"></i>
+                </li>
+                <li>
+                    <i class="fa fa-star"></i>
+                </li>
+                <li>
+                    <i class="fa fa-star"></i>
+                </li>
+            </ul>
+
+            <span class="moves">3</span> Moves
+
+            <div class="restart">
+                <i class="fa fa-repeat"></i>
+            </div>
+        </section>
+    </section>
+    <!-- GAME SECTION Start -->
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,3 @@
+setTimeout(function () {
+    // mach es erst in einer Sekunde...
+}, 1000);
