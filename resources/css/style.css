@@ -13,10 +13,12 @@ h1 {
     font-weight: 300;
     font-size: 4rem;
     padding: 3rem;
+    text-align: center;
 }
 
 h2 {
     font-size: 3.5rem;
+    padding-top: 2rem; 
 }
 
 h3 {
@@ -30,6 +32,14 @@ h4 {
 
 p {
     font-size: 2rem;
+}
+
+.hiddenElement {
+    display:none;
+}
+
+.showElement {
+    display: block;
 }
 
 /****************************************
