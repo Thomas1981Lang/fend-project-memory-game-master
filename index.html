@@ -13,28 +13,7 @@
     <link rel="stylesheet" href="./resources/css/reset.css">
     <link rel="stylesheet" href="./resources/css/style.css">
     <script src="./resources/js/memory.lib.js"></script>
-    <script>
-        var voc = [
-            ['dog', 'Hund'],
-            ['cat', 'Katze'] //,
-            //['snake', 'Schlange'],
-            //['lion', 'Löwe'],
-            //['mouse', 'Maus'],
-            //['bug', 'Käfer'],
-            //['ant', 'Ameise'],
-            //['horse', 'Pferd'],
-            //['cow', 'Kuh'],
-            //['sheep', 'Schaf']
-        ];
-
-
-
-        window.onload = function () {
-
-
-
-        } //onload
-    </script>
+    <script src="./resources/js/memory.js"></script>
 </head>
 
 
@@ -81,30 +60,74 @@
     <section class="game" id="game">
         <h1>Memory Game</h1>
         <section class="score-panel">
-            <div class="score">
-                <ul class="stars">
-                    <li>
-                        <i class="fa fa-star"></i>
-                    </li>
-                    <li>
-                        <i class="fa fa-star"></i>
-                    </li>
-                    <li>
-                        <i class="fa fa-star"></i>
-                    </li>
-                </ul>
+            <ul class="stars">
+                <li>
+                    <i class="fa fa-star"></i>
+                </li>
+                <li>
+                    <i class="fa fa-star"></i>
+                </li>
+                <li>
+                    <i class="fa fa-star"></i>
+                </li>
+            </ul>
 
+            <span class="moves">3</span> Moves
 
-                <p>
-                    <span class="moves">3</span> Moves
-                </p>
-            </div>
             <div class="restart">
                 <i class="fa fa-repeat"></i>
             </div>
         </section>
-        <section class="board">
+        <section class="deck">
 
+            <div class="card">
+                <i class="fa fa-diamond"></i>
+            </div>
+            <div class="card">
+                <i class="fa fa-paper-plane-o"></i>
+            </div>
+            <div class="card done">
+                <i class="fa fa-anchor"></i>
+            </div>
+            <div class="card">
+                <i class="fa fa-bolt"></i>
+            </div>
+            <div class="card">
+                <i class="fa fa-cube"></i>
+            </div>
+            <div class="card done">
+                <i class="fa fa-anchor"></i>
+            </div>
+            <div class="card">
+                <i class="fa fa-leaf"></i>
+            </div>
+            <div class="card">
+                <i class="fa fa-bicycle"></i>
+            </div>
+            <div class="card">
+                <i class="fa fa-diamond"></i>
+            </div>
+            <div class="card">
+                <i class="fa fa-bomb"></i>
+            </div>
+            <div class="card">
+                <i class="fa fa-leaf"></i>
+            </div>
+            <div class="card">
+                <i class="fa fa-bomb"></i>
+            </div>
+            <div class="card open flipped">
+                <i class="fa fa-bolt"></i>
+            </div>
+            <div class="card">
+                <i class="fa fa-bicycle"></i>
+            </div>
+            <div class="card">
+                <i class="fa fa-paper-plane-o"></i>
+            </div>
+            <div class="card">
+                <i class="fa fa-cube"></i>
+            </div>
         </section>
     </section>
     <!-- GAME SECTION Start -->
