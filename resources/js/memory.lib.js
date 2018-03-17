@@ -99,16 +99,21 @@ var cards = function (shuffle) {
     console.log('ranking', ranking);
 
     for (var i = 0; i < shuffle.length; i++) {
+        cardcontainer = document.createElement('div');
+        cardcontainer.className = 'card';
+        cardcontainer.dataset.logo = shuffle[i];
+        document.getElementsByClassName('deck')[0].appendChild(cardcontainer);
         back = document.createElement('div');
-        back.className = 'card';
-        back.dataset.logo = shuffle[i];
-        document.getElementsByClassName('deck')[0].appendChild(back);
+        back.className = 'back';
+        /* back.innerHTML = shuffle[i]; */
+        cardcontainer.appendChild(back);
         front = document.createElement('div');
+        front.className = 'front';
         front.innerHTML = shuffle[i];
-        back.appendChild(front);
+        cardcontainer.appendChild(front);
 
 
-        back.onclick = function () {
+        cardcontainer.onclick = function () {
             if (this.className == 'card') {
                 if (clicked < 2) {
                     clicked++;
@@ -116,115 +121,56 @@ var cards = function (shuffle) {
                     var card = this.dataset.logo;
                     selected.push(card);
 
-
-                    if (clicked == 2) {
-                        for (var i = 0; i < vocArray.length; i++) {
-                            if (vocArray[i].indexOf(selected[0]) >= 0 && vocArray[i].indexOf(selected[1]) >= 0) {
-                                matched = true;
-                                document.querySelector("[data-logo='" + selected[0] + "']").className = "card done";
-                                document.querySelector("[data-logo='" + selected[1] + "']").className = "card done";
-                                console.log('innen', vocArray[i]);
-                                console.log('bedienung', vocArray[i].indexOf(selected[0]));
-                            } else
-                                console.log('aussen', vocArray[i]);
-                            console.log('bedienungelse', vocArray[i].indexOf(selected[0]));
-                        }
-                        if (matched) {
-                            wingame--
-                            matched = false;
-                            move++;
-                            document.getElementsByClassName('moves')[0].innerHTML = move;
-                            console.log(move);
-                            console.log('wingameaftermatch', wingame);
-                            if (wingame == 0) {
-                                win();
+                    setTimeout(function () {
+                        if (clicked == 2) {
+                            for (var i = 0; i < vocArray.length; i++) {
+                                if (vocArray[i].indexOf(selected[0]) >= 0 && vocArray[i].indexOf(selected[1]) >= 0) {
+                                    matched = true;
+                                    document.querySelector("[data-logo='" + selected[0] + "']").className = "card done";
+                                    document.querySelector("[data-logo='" + selected[1] + "']").className = "card done";
+                                    console.log('innen', vocArray[i]);
+                                    console.log('bedienung', vocArray[i].indexOf(selected[0]));
+                                } else
+                                    console.log('aussen', vocArray[i]);
+                                console.log('bedienungelse', vocArray[i].indexOf(selected[0]));
                             }
-                            clicked = 0;
-                            selected = [];
-                            move++;
-                            console.log(move);
-                            document.getElementsByClassName('moves')[0].innerHTML = move;
+                            if (matched) {
+                                wingame--
+                                matched = false;
+                                move++;
+                                document.getElementsByClassName('moves')[0].innerHTML = move;
+                                console.log(move);
+                                console.log('wingameaftermatch', wingame);
+                                if (wingame == 0) {
+                                    win();
+                                }
+                                clicked = 0;
+                                selected = [];
+                                move++;
+                                console.log(move);
+                                document.getElementsByClassName('moves')[0].innerHTML = move;
 
-                            ranking--;
-                            stars();
-                        } else {
-                            document.querySelector("[data-logo='" + selected[0] + "']").className = "card";
-                            document.querySelector("[data-logo='" + selected[1] + "']").className = "card";
-                            clicked = 0;
-                            selected = [];
-                            move++;
-                            ranking--;
-                            stars();
+                                ranking--;
+                                stars();
+                            } else {
+                                document.querySelector("[data-logo='" + selected[0] + "']").className = "card";
+                                document.querySelector("[data-logo='" + selected[1] + "']").className = "card";
+                                clicked = 0;
+                                selected = [];
+                                move++;
+                                ranking--;
+                                stars();
 
-                            console.log('ranking', ranking);
-                            document.getElementsByClassName('moves')[0].innerHTML = move;
-                        }
-                    }
-
-
-
-                    /* 
-                                        var star = document.getElementsByClassName('stars')[0];
-                                        switch (ranking) {
-                                            case 47:
-                                                star.removeChild(star.childNodes[0]);
-                                                var li = document.createElement('li');
-                                                var eli = document.createElement('i');
-                                                eli.className = 'fa fa-star-o';
-                                                li.appendChild(eli);
-                                                document.getElementsByClassName('stars')[0].appendChild(li);
-                                                break;
-                                            case 44:
-                                                star.removeChild(star.childNodes[0]);
-                                                var li = document.createElement('li');
-                                                var eli = document.createElement('i');
-                                                eli.className = 'fa fa-star-o';
-                                                li.appendChild(eli);
-                                                document.getElementsByClassName('stars')[0].appendChild(li);
-                                                break;
-                                            case 41:
-                                                star.removeChild(star.childNodes[0]);
-                                                var li = document.createElement('li');
-                                                var eli = document.createElement('i');
-                                                eli.className = 'fa fa-star-o';
-                                                li.appendChild(eli);
-                                                document.getElementsByClassName('stars')[0].appendChild(li);
-                                                break;
-                                            case 39:
-
-                                                break;
-                                        } //switch
-                     */
-
-
-                    /* for (var i = 0; i < vocArray.length; i++) {
-                        console.log(vocArray[i]);
-                        if (vocArray[i].indexOf(selected[0]) >= 0 && vocArray[i].indexOf(selected[1]) >= 0) {
-                            wingame--
-                            console.log('yes');
-                            console.log(wingame);
-                            if (wingame == 0) {
-                                win();
+                                console.log('ranking', ranking);
+                                document.getElementsByClassName('moves')[0].innerHTML = move;
                             }
-                        } else {
-                            console.log('no');
-                            console.log('query1', document.querySelector("[data-logo='" + selected[0] + "']"));
-                            console.log('query2', document.querySelector("[data-logo='" + selected[1] + "']"));
-                            document.querySelector("[data-logo='" + selected[0] + "']").className = "card";
-                            document.querySelector("[data-logo='" + selected[1] + "']").className = "card";
-                            clicked = 0;
-                            selected = [];
-                        } */
+                        }
+
+                    }, 3000);
+
                 }
             }
         } // onclick
     } // for shuffel.lenght
 } // cards()
 
-
-
-
-
-setTimeout(function () {
-    // mach es erst in einer Sekunde...
-}, 1000);
