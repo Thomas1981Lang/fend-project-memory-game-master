@@ -1,4 +1,22 @@
-var ranking = 30;
+var reset = function () {
+    ranking = rankingdefault;
+    var newdeck = document.getElementsByClassName('deck')[0].innerHTML = '';
+    var resetmoves = document.getElementsByClassName('moves')[0].innerHTML = '0';
+    document.getElementById('one').className = "fa fa-star";
+    document.getElementById('two').className = "fa fa-star";
+    document.getElementById('three').className = "fa fa-star";
+    var clicked = 0;
+    var selected = [];
+    var matched;
+    var wingame = vocArray.length;
+    var move = 0;
+    var sArray = singleArray(vocArray);
+
+    var sCards = shuffle(sArray);
+
+    cards(sCards);
+
+}
 
 var stars = function () {
 
@@ -42,6 +60,7 @@ var lost = function () {
     h2.innerHTML = 'I\'m sorry you lost';
     document.getElementsByTagName('h1')[0].appendChild(h2);
     document.getElementsByTagName('button')[0].innerText = 'Try Again'
+    reset();
 }
 
 var formular = function () {
@@ -53,14 +72,11 @@ var formular = function () {
     }
 }
 
-// TODO: reset
-var reset = function () {
-    //TODO:
-}
+
 
 var restart = function () {
     document.getElementsByClassName('restart')[0].onclick = function () {
-        welcome();
+        reset();
     }
 }
 var singleArray = function (multiArray) {

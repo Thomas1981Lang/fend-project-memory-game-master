@@ -1,3 +1,6 @@
+var rankingdefault = 30;
+var ranking = rankingdefault;
+
 var vocArray = [
     ['dog', 'Hund'],
     ['cat', 'Katze'],

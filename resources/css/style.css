@@ -2,20 +2,31 @@
 *************   BASIC  DESIGN   *********
 ****************************************/
 
+*::-moz-selection,
+*::selection {
+    background: transparent;
+    color: inherit;
+}
+
+* {
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
 body {
     font-size: 22px;
     background-image: url(./../images/geometry2.png);
     font-family: 'Coda', cursive;
-    transition: opacity 1s;
 }
 
 h1 {
     font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+    font-weight: bold;
     font-size: 4rem;
     padding: 3rem;
     text-align: center;
-    color: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
 }
 
 h2 {
