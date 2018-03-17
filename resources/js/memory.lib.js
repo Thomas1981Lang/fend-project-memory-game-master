@@ -18,16 +18,44 @@ var reset = function () {
 
 }
 
-var stars = function () {
+var highscore = function () {
+    var move = 15;
+    var rate = 3;
+    if (localStorage.length !== 0) {
+        if (localStorage.getItem("moves") > move && localStorage.getItem("stars") <= rate ) {
+            console.log(localStorage.getItem("moves") > move);
+            var highname = "tim";
+            var highmoves = move;
+            var highstars = rate;
+            var highsec = 100;
+            localStorage.setItem("name", highname);
+            localStorage.setItem("stars", "3");
+            localStorage.setItem("moves", highmoves);
+            localStorage.setItem("seconds", highsec);
+            formular();
+        } else {
+            console.log(localStorage.getItem("moves") > move);
+            console.log('pech');
+        }
+    } else {
+        document.getElementById('highscore').innerHTML = '';
+        var createhighscore = document.getElementById('highscore');
+        createhighscore.innerHTML = '<td class="highname">Thomas</td><td class="highstars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></td><td class="highmoves">30</td><td class="highsec">100</td>';
+    }
+}
 
+
+var stars = function () {
+    var rate = 3;
     if (ranking == 25) {
         document.getElementById('one').className = "fa fa-star-o";
+        rate = 2;
     } else if (ranking == 18) {
         document.getElementById('two').className = "fa fa-star-o";
-
+        rate = 1
     } else if (ranking == 10) {
         document.getElementById('three').className = "fa fa-star-o";
-
+        rate = 0
     } else if (ranking == 0) {
         lost();
     }
@@ -49,7 +77,8 @@ var win = function () {
     document.getElementById('game').className = 'game hiddenElement';
     document.getElementsByTagName('h1')[0].innerHTML = 'Congratulations';
     document.getElementsByTagName('button')[0].className = 'hiddenElement';
-    formular();
+    highscore();
+    
 }
 
 var lost = function () {
@@ -189,4 +218,3 @@ var cards = function (shuffle) {
         } // onclick
     } // for shuffel.lenght
 } // cards()
-

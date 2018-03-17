@@ -27,7 +27,7 @@
         <h1>The great Memory Game</h1>
         <button class="start">Start</button>
 
-        <form class="hiddenElement" id="formular" >
+        <form class="hiddenElement" id="formular">
             <label for="winner">The winner is: </label>
             <input id="winner" type="text" name="winner" value="the great game" onfocus="this.value=''">
             <button>well done</button>
@@ -40,20 +40,20 @@
                 <tr>
                     <th>Name</th>
                     <th>Sterne</th>
-                    <th>Züge</th>
+                    <th >Züge</th>
                     <th>Minuten</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Thomas</td>
-                    <td>
+                <tr id="highscore">
+                    <td class="highname">Thomas</td>
+                    <td class="highstars">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                     </td>
-                    <td>Züge</td>
-                    <td>Minuten</td>
+                    <td class="highmoves">30</td>
+                    <td class="highsec">100</td>
                     <!-- Dynamisch Generierter Inhalt -->
                 </tr>
             </tbody>
