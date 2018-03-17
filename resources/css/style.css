@@ -44,6 +44,7 @@ p {
 .info.hiddenElement {
     transition: opacity 2s ease-out;
     opacity: 0; 
+    min-height: 0;
     height: 0;
     overflow: hidden;
 }
@@ -55,7 +56,7 @@ p {
 .game.showElement,
 .info.showElement {
     opacity: 1;
-    height: 100vh;
+    min-height: 100vh;
     transition: opacity 2s ease-out;
 }
 
@@ -68,7 +69,7 @@ p {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .start {
@@ -83,7 +84,7 @@ th,
 td {
     border: 1px solid black;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.5)
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 th {
@@ -105,7 +106,7 @@ th:first-child {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .score-panel {
@@ -146,8 +147,8 @@ th:first-child {
 }
 
 .deck .card {
-    height: 135px;
-    width: 135px;
+    height: 120px;
+    width: 120px;
     background: #2e3d49;
     font-size: 0;
     color: #ffffff;
