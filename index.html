@@ -20,28 +20,29 @@
 
 <body>
 
-
-
     <!-- INFO SECTION Start -->
     <section class="info" id="info">
+        
         <h1>The great Memory Game</h1>
         <button class="start">Start</button>
 
         <form class="hiddenElement" id="formular">
             <label for="winner">The winner is: </label>
             <input id="winner" type="text" name="winner" value="the great game" onfocus="this.value=''">
-            <button>well done</button>
+            <button id="btn">well done</button>
         </form>
 
-        <h3>Shorttime - History</h3>
+
+        <!-- HIGHSCORE Start -->
+        <h3>The SCORE to beat</h3>
 
         <table>
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Sterne</th>
-                    <th >Züge</th>
-                    <th>Minuten</th>
+                    <th>Stars</th>
+                    <th>Moves</th>
+                    <th>Seconds</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,10 +55,11 @@
                     </td>
                     <td class="highmoves">30</td>
                     <td class="highsec">100</td>
-                    <!-- Dynamisch Generierter Inhalt -->
                 </tr>
             </tbody>
         </table>
+        <!-- HIGHSCORE Start -->
+
     </section>
     <!-- INFO SECTION END -->
 
@@ -66,6 +68,9 @@
     <!-- GAME SECTION Start -->
     <section class="game hiddenElement" id="game">
         <h1>Memory Game</h1>
+
+
+        <!-- GAMES CONTROL PANEL Start -->
         <section class="score-panel">
             <ul class="stars" id="stars">
                 <li>
@@ -81,14 +86,23 @@
 
             <span class="moves">0</span> Moves
 
+
             <div class="restart" id="restart">
                 <i class="fa fa-repeat"></i>
             </div>
         </section>
+        <!-- GAMES CONTROL PANEL End -->
+
+
+        <!-- RANDOM MEMORY CARDS DECK Start-->
         <section class="deck">
 
+            <!-- dynamically generated output -->
 
         </section>
+        <!-- RANDOM MEMORY CARDS DECK End-->
+
+
     </section>
     <!-- GAME SECTION Start -->
 

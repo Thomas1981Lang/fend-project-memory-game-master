@@ -16,9 +16,14 @@
 }
 
 body {
-    font-size: 22px;
+    
     background-image: url(./../images/geometry2.png);
+    
+}
+
+body, input, textarea, button, select {
     font-family: 'Coda', cursive;
+    font-size: 22px;
 }
 
 h1 {
@@ -90,6 +95,16 @@ p {
     border-radius: 15px;
 }
 
+form{
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    margin: 5rem;
+}
+
+label {
+padding: 0 15px;
+}
 table,
 th,
 td {

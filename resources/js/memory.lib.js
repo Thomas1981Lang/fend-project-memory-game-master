@@ -1,3 +1,6 @@
+/************************************
+ * Reset Board
+ ***********************************/
 var reset = function () {
     ranking = rankingdefault;
     var newdeck = document.getElementsByClassName('deck')[0].innerHTML = '';
@@ -10,61 +13,143 @@ var reset = function () {
     var matched;
     var wingame = vocArray.length;
     var move = 0;
+    var rate = 3;
+
     var sArray = singleArray(vocArray);
-
     var sCards = shuffle(sArray);
-
     cards(sCards);
 
 }
 
-var highscore = function () {
-    var move = 15;
-    var rate = 3;
-    if (localStorage.length !== 0) {
-        if (localStorage.getItem("moves") > move && localStorage.getItem("stars") <= rate ) {
-            console.log(localStorage.getItem("moves") > move);
-            var highname = "tim";
-            var highmoves = move;
-            var highstars = rate;
-            var highsec = 100;
-            localStorage.setItem("name", highname);
-            localStorage.setItem("stars", "3");
-            localStorage.setItem("moves", highmoves);
-            localStorage.setItem("seconds", highsec);
-            formular();
-        } else {
-            console.log(localStorage.getItem("moves") > move);
-            console.log('pech');
-        }
-    } else {
+/************************************
+ * Highscore initialization
+ * write LocalStorage Data if !exits
+ * or queries the data
+ ***********************************/
+var highscorewelcome = function () {
+    if (localStorage.length !== 0) { // sind daten vorhanden?
+        //ja
+        var highname = localStorage.getItem("name");
+        var highmoves = localStorage.getItem("moves");
+        var highstars = localStorage.getItem("stars");
+        var highsec = localStorage.getItem("seconds");
+        console.log('hi wel localstorage', localStorage);
+        localStorage.setItem("name", highname);
+        localStorage.setItem("stars", "3");
+        localStorage.setItem("moves", highmoves);
+        localStorage.setItem("seconds", highsec);
+
+
+
+
+        /* tempname = localStorage.getItem('name');
+        console.log('hsw data available yes')
+        console.log('hsw ini getname', localStorage.getItem('name'))
+        tempstars = localStorage.getItem('stars');
+        console.log('hsw ini getstars', localStorage.getItem('stars'))
+        tempname = localStorage.getItem('moves');
+        console.log('hsw ini getmoves', localStorage.getItem('moves'))
+        tempsec = localStorage.getItem('seconds');
+        console.log('hsw ini getsec', localStorage.getItem('seconds'))
+        */
+        document.getElementsByClassName('highname')[0].innerHTML = localStorage.getItem('name');
+        document.getElementsByClassName('highmoves')[0].innerHTML = localStorage.getItem('moves');
+        document.getElementsByClassName('highsec')[0].innerHTML = localStorage.getItem('seconds');
+
+    } else { // nein
+        console.log('hsw data available no')
         document.getElementById('highscore').innerHTML = '';
         var createhighscore = document.getElementById('highscore');
-        createhighscore.innerHTML = '<td class="highname">Thomas</td><td class="highstars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></td><td class="highmoves">30</td><td class="highsec">100</td>';
-    }
+        createhighscore.innerHTML = '<td class="highname">Test</td><td class="highstars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></td><td class="highmoves">50</td><td class="highsec">100</td>';
+        localStorage.setItem("name", "Thomas");
+        localStorage.setItem("stars", "3");
+        localStorage.setItem("moves", "30");
+        localStorage.setItem("seconds", "90");
+    } // das nächste mal sollten Daten vorhanden sein
 }
 
+/***********************************
+ * Enter Highscore if better save
+ * Data to Local Storage
+ * if not Game Over with try again  
+ ***********************************/
+/* var move = 18;
+var rate = 3;
+var getname;
+var getmoves = move;
+var getstars = rate;
+var getsec = 100; */
+ 
+var highscore = function () {
+    if (localStorage.getItem("moves") > move && localStorage.getItem("stars") <= rate) {
+        win();
+        document.getElementById('formular').className = 'showElement';
+        document.getElementsByClassName('highname')[0].innerHTML = localStorage.getItem('name');
+        document.getElementsByClassName('highmoves')[0].innerHTML = localStorage.getItem('moves');
+        document.getElementsByClassName('highsec')[0].innerHTML = localStorage.getItem('seconds');
 
+        getname = document.getElementById('winner');
+        getmoves = move;
+        getstars = rate;
+        getsec = 100;
+        console.log('vor onclick localstorage', localStorage);
+        document.getElementById('btn').onclick = function (event) {
+            event.preventDefault();
+            console.log('onclick vor localstorage', localStorage);
+            localStorage.setItem('name', getname.value);
+            localStorage.setItem('stars', "3");
+            localStorage.setItem('moves', getmoves);
+            localStorage.setItem('seconds', getsec);
+            console.log('onclick nach localstorage', localStorage);
+           
+            document.getElementById('formular').className = 'hiddenElement';
+            document.getElementsByTagName('button')[0].className = 'start';
+        }
+
+
+
+    } else {
+        console.log(localStorage.getItem("moves") > move);
+        console.log('pech');
+        lost();
+        document.getElementsByTagName('h2')[0].innerHTML = 'I\'m sorry you are not good enough <br>&#128532;<br>Try to be better next time<br>&#128170;'
+    }
+} // highscore
+
+
+/*******************************
+ * Star Rating
+ *******************************/
 var stars = function () {
     var rate = 3;
     if (ranking == 25) {
         document.getElementById('one').className = "fa fa-star-o";
         rate = 2;
+        return rate;
     } else if (ranking == 18) {
         document.getElementById('two').className = "fa fa-star-o";
         rate = 1
+        return rate;
     } else if (ranking == 10) {
         document.getElementById('three').className = "fa fa-star-o";
         rate = 0
+        return rate;
     } else if (ranking == 0) {
         lost();
     }
+    return rate;
 }
 
+
+/* 
 var welcome = function () {
     location.reload();
 }
+ */
 
+/*******************************
+ * Show the Gameboard
+ *******************************/
 var game = function () {
     document.getElementsByTagName('button')[0].onclick = function () {
         document.getElementById('game').className = 'game showElement';
@@ -72,15 +157,19 @@ var game = function () {
     }
 }
 
+/*******************************
+ * Show the Winner Message
+ ******************************/
 var win = function () {
     document.getElementById('info').className = 'game showElement';
     document.getElementById('game').className = 'game hiddenElement';
     document.getElementsByTagName('h1')[0].innerHTML = 'Congratulations';
     document.getElementsByTagName('button')[0].className = 'hiddenElement';
-    highscore();
-    
 }
 
+/*******************************
+ * Show the Looser Message
+ ******************************/
 var lost = function () {
     document.getElementById('info').className = 'game showElement';
     document.getElementById('game').className = 'game hiddenElement';
@@ -88,26 +177,23 @@ var lost = function () {
     var h2 = document.createElement('h2')
     h2.innerHTML = 'I\'m sorry you lost';
     document.getElementsByTagName('h1')[0].appendChild(h2);
-    document.getElementsByTagName('button')[0].innerText = 'Try Again'
+    document.getElementsByTagName('button')[0].innerText = 'Try Again';
     reset();
 }
 
-var formular = function () {
-    document.getElementsByTagName('form')[0].className = 'showElement';
-    document.getElementById('winner').onsubmit = function (event) {
-        event.preventDefault();
-        document.getElementsByTagName('form').className = 'hiddenElement';
-        document.getElementsByTagName('button')[0].className = 'button showElement';
-    }
-}
-
-
-
+/*******************************
+ * Activates Reset on click
+ ******************************/
 var restart = function () {
-    document.getElementsByClassName('restart')[0].onclick = function () {
+    document.getElementById('restart').onclick = function () {
         reset();
     }
 }
+
+/********************************
+ * Split multi array into a single Array 
+ * @param {array} multiArray 
+ ********************************/
 var singleArray = function (multiArray) {
     var i, singleArray = [];
 
@@ -118,7 +204,11 @@ var singleArray = function (multiArray) {
     return singleArray;
 }
 
-
+/***********************************
+ * Shuffle a normal single Array 
+ * @param {array} singleArray
+ * @return {array} shuffled Array
+ **********************************/
 var shuffle = function (singleArray) {
     var currentIndex = singleArray.length,
         temporaryValue, randomIndex;
@@ -133,6 +223,10 @@ var shuffle = function (singleArray) {
     return singleArray;
 }
 
+
+/*********************************
+ *  
+ */
 var cards = function (shuffle) {
     var clicked = 0;
     var selected = [];
@@ -173,30 +267,26 @@ var cards = function (shuffle) {
                                     matched = true;
                                     document.querySelector("[data-logo='" + selected[0] + "']").className = "card done";
                                     document.querySelector("[data-logo='" + selected[1] + "']").className = "card done";
-                                    console.log('innen', vocArray[i]);
-                                    console.log('bedienung', vocArray[i].indexOf(selected[0]));
-                                } else
-                                    console.log('aussen', vocArray[i]);
-                                console.log('bedienungelse', vocArray[i].indexOf(selected[0]));
+
+                                }
                             }
                             if (matched) {
-                                wingame--
                                 matched = false;
                                 move++;
+                                wingame--;
                                 document.getElementsByClassName('moves')[0].innerHTML = move;
                                 console.log(move);
                                 console.log('wingameaftermatch', wingame);
                                 if (wingame == 0) {
-                                    win();
+                                    rate = stars();
+                                    console.log('rate', rate);
+                                    console.log('in der bedingung ==0',wingame);
+                                    highscore();
                                 }
                                 clicked = 0;
                                 selected = [];
-                                move++;
                                 console.log(move);
                                 document.getElementsByClassName('moves')[0].innerHTML = move;
-
-                                ranking--;
-                                stars();
                             } else {
                                 document.querySelector("[data-logo='" + selected[0] + "']").className = "card";
                                 document.querySelector("[data-logo='" + selected[1] + "']").className = "card";
@@ -204,14 +294,15 @@ var cards = function (shuffle) {
                                 selected = [];
                                 move++;
                                 ranking--;
-                                stars();
+                                rate = stars();
+                                console.log('elserate', rate);
 
                                 console.log('ranking', ranking);
                                 document.getElementsByClassName('moves')[0].innerHTML = move;
                             }
                         }
 
-                    }, 3000);
+                    }, 1000);
 
                 }
             }
