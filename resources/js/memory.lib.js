@@ -12,8 +12,8 @@ var reset = function () {
     var selected = [];
     var matched;
     var wingame = vocArray.length;
-    var move = 0;
-    var rate = 3;
+    move = 0;
+    rate = 3;
 
     var sArray = singleArray(vocArray);
     var sCards = shuffle(sArray);
@@ -33,38 +33,23 @@ var highscorewelcome = function () {
         var highmoves = localStorage.getItem("moves");
         var highstars = localStorage.getItem("stars");
         var highsec = localStorage.getItem("seconds");
-        console.log('hi wel localstorage', localStorage);
         localStorage.setItem("name", highname);
         localStorage.setItem("stars", "3");
         localStorage.setItem("moves", highmoves);
         localStorage.setItem("seconds", highsec);
 
-
-
-
-        /* tempname = localStorage.getItem('name');
-        console.log('hsw data available yes')
-        console.log('hsw ini getname', localStorage.getItem('name'))
-        tempstars = localStorage.getItem('stars');
-        console.log('hsw ini getstars', localStorage.getItem('stars'))
-        tempname = localStorage.getItem('moves');
-        console.log('hsw ini getmoves', localStorage.getItem('moves'))
-        tempsec = localStorage.getItem('seconds');
-        console.log('hsw ini getsec', localStorage.getItem('seconds'))
-        */
         document.getElementsByClassName('highname')[0].innerHTML = localStorage.getItem('name');
         document.getElementsByClassName('highmoves')[0].innerHTML = localStorage.getItem('moves');
         document.getElementsByClassName('highsec')[0].innerHTML = localStorage.getItem('seconds');
 
     } else { // nein
-        console.log('hsw data available no')
         document.getElementById('highscore').innerHTML = '';
         var createhighscore = document.getElementById('highscore');
-        createhighscore.innerHTML = '<td class="highname">Test</td><td class="highstars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></td><td class="highmoves">50</td><td class="highsec">100</td>';
+        createhighscore.innerHTML = '<td class="highname">Thomas</td><td class="highstars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></td><td class="highmoves">20</td><td class="highsec">100</td>';
         localStorage.setItem("name", "Thomas");
         localStorage.setItem("stars", "3");
-        localStorage.setItem("moves", "30");
-        localStorage.setItem("seconds", "90");
+        localStorage.setItem("moves", "20");
+        localStorage.setItem("seconds", "100");
     } // das nächste mal sollten Daten vorhanden sein
 }
 
@@ -73,14 +58,13 @@ var highscorewelcome = function () {
  * Data to Local Storage
  * if not Game Over with try again  
  ***********************************/
-/* var move = 18;
-var rate = 3;
-var getname;
-var getmoves = move;
-var getstars = rate;
-var getsec = 100; */
- 
+
 var highscore = function () {
+    console.log('highscore move', move);
+    console.log('highscore rate', rate);
+    console.log('highscore bedingung', localStorage.getItem("moves") > move && localStorage.getItem("stars") <= rate);
+    console.log('highscore localStorage', localStorage);
+
     if (localStorage.getItem("moves") > move && localStorage.getItem("stars") <= rate) {
         win();
         document.getElementById('formular').className = 'showElement';
@@ -92,25 +76,25 @@ var highscore = function () {
         getmoves = move;
         getstars = rate;
         getsec = 100;
-        console.log('vor onclick localstorage', localStorage);
+       
         document.getElementById('btn').onclick = function (event) {
             event.preventDefault();
-            console.log('onclick vor localstorage', localStorage);
             localStorage.setItem('name', getname.value);
             localStorage.setItem('stars', "3");
             localStorage.setItem('moves', getmoves);
             localStorage.setItem('seconds', getsec);
-            console.log('onclick nach localstorage', localStorage);
-           
+
             document.getElementById('formular').className = 'hiddenElement';
             document.getElementsByTagName('button')[0].className = 'start';
+            document.getElementsByClassName('highname')[0].innerHTML = localStorage.getItem('name');
+            document.getElementsByClassName('highmoves')[0].innerHTML = localStorage.getItem('moves');
+            document.getElementsByClassName('highsec')[0].innerHTML = localStorage.getItem('seconds');
+            reset();
         }
 
 
 
     } else {
-        console.log(localStorage.getItem("moves") > move);
-        console.log('pech');
         lost();
         document.getElementsByTagName('h2')[0].innerHTML = 'I\'m sorry you are not good enough <br>&#128532;<br>Try to be better next time<br>&#128170;'
     }
@@ -121,7 +105,7 @@ var highscore = function () {
  * Star Rating
  *******************************/
 var stars = function () {
-    var rate = 3;
+    rate = 3;
     if (ranking == 25) {
         document.getElementById('one').className = "fa fa-star-o";
         rate = 2;
@@ -178,6 +162,9 @@ var lost = function () {
     h2.innerHTML = 'I\'m sorry you lost';
     document.getElementsByTagName('h1')[0].appendChild(h2);
     document.getElementsByTagName('button')[0].innerText = 'Try Again';
+    document.getElementsByClassName('highname')[0].innerHTML = localStorage.getItem('name');
+    document.getElementsByClassName('highmoves')[0].innerHTML = localStorage.getItem('moves');
+    document.getElementsByClassName('highsec')[0].innerHTML = localStorage.getItem('seconds');
     reset();
 }
 
@@ -232,10 +219,13 @@ var cards = function (shuffle) {
     var selected = [];
     var matched;
     var wingame = vocArray.length;
+    move = 0;
 
-    var move = 0;
-    console.log('wingamestart', wingame);
-    console.log('ranking', ranking);
+    console.log('beginn cards move', move);
+    console.log('beginn cards rate', rate);
+    console.log('beginn cards bedingung', localStorage.getItem("moves") > move && localStorage.getItem("stars") <= rate);
+    console.log('beginn cards localStorage', localStorage);
+
 
     for (var i = 0; i < shuffle.length; i++) {
         cardcontainer = document.createElement('div');
@@ -268,6 +258,11 @@ var cards = function (shuffle) {
                                     document.querySelector("[data-logo='" + selected[0] + "']").className = "card done";
                                     document.querySelector("[data-logo='" + selected[1] + "']").className = "card done";
 
+
+                                    console.log('move', move);
+                                    console.log('rate', rate);
+                                    console.log('bedingung', localStorage.getItem("moves") > move && localStorage.getItem("stars") <= rate);
+                                    console.log('localStorage', localStorage);
                                 }
                             }
                             if (matched) {
@@ -275,17 +270,27 @@ var cards = function (shuffle) {
                                 move++;
                                 wingame--;
                                 document.getElementsByClassName('moves')[0].innerHTML = move;
-                                console.log(move);
-                                console.log('wingameaftermatch', wingame);
                                 if (wingame == 0) {
                                     rate = stars();
-                                    console.log('rate', rate);
-                                    console.log('in der bedingung ==0',wingame);
                                     highscore();
+
+                                    console.log('wingame 0 move', move);
+                                    console.log('wingame 0 rate', rate);
+                                    console.log('wingame 0 bedingung', localStorage.getItem("moves") > move && localStorage.getItem("stars") <= rate);
+                                    console.log('wingame 0 localStorage', localStorage);
+                                    
+
+
                                 }
                                 clicked = 0;
                                 selected = [];
-                                console.log(move);
+
+                                console.log('card matched move', move);
+                                console.log('card matched rate', rate);
+                                console.log('card matched bedingung', localStorage.getItem("moves") > move && localStorage.getItem("stars") <= rate);
+                                console.log('card matched localStorage', localStorage);
+
+
                                 document.getElementsByClassName('moves')[0].innerHTML = move;
                             } else {
                                 document.querySelector("[data-logo='" + selected[0] + "']").className = "card";
@@ -295,9 +300,14 @@ var cards = function (shuffle) {
                                 move++;
                                 ranking--;
                                 rate = stars();
-                                console.log('elserate', rate);
 
-                                console.log('ranking', ranking);
+
+                                console.log('card wrong move', move);
+                                console.log('card wrong rate', rate);
+                                console.log('card wrong bedingung', localStorage.getItem("moves") > move && localStorage.getItem("stars") <= rate);
+                                console.log('card wrong localStorage', localStorage);
+
+
                                 document.getElementsByClassName('moves')[0].innerHTML = move;
                             }
                         }
