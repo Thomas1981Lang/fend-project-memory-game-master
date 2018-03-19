@@ -2,7 +2,7 @@
  *  Variablen
  */
 
-var rankingdefault = 30;
+var rankingdefault = 40;
 var ranking = rankingdefault;
 var move;
 var rate;

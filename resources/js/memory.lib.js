@@ -45,10 +45,10 @@ var highscorewelcome = function () {
     } else { // nein
         document.getElementById('highscore').innerHTML = '';
         var createhighscore = document.getElementById('highscore');
-        createhighscore.innerHTML = '<td class="highname">Thomas</td><td class="highstars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></td><td class="highmoves">20</td><td class="highsec">100</td>';
+        createhighscore.innerHTML = '<td class="highname">Thomas</td><td class="highstars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></td><td class="highmoves">25</td><td class="highsec">100</td>';
         localStorage.setItem("name", "Thomas");
         localStorage.setItem("stars", "3");
-        localStorage.setItem("moves", "20");
+        localStorage.setItem("moves", "25");
         localStorage.setItem("seconds", "100");
     } // das nächste mal sollten Daten vorhanden sein
 }
@@ -60,10 +60,6 @@ var highscorewelcome = function () {
  ***********************************/
 
 var highscore = function () {
-    console.log('highscore move', move);
-    console.log('highscore rate', rate);
-    console.log('highscore bedingung', localStorage.getItem("moves") > move && localStorage.getItem("stars") <= rate);
-    console.log('highscore localStorage', localStorage);
 
     if (localStorage.getItem("moves") > move && localStorage.getItem("stars") <= rate) {
         win();
@@ -76,7 +72,7 @@ var highscore = function () {
         getmoves = move;
         getstars = rate;
         getsec = 100;
-       
+
         document.getElementById('btn').onclick = function (event) {
             event.preventDefault();
             localStorage.setItem('name', getname.value);
@@ -123,13 +119,6 @@ var stars = function () {
     }
     return rate;
 }
-
-
-/* 
-var welcome = function () {
-    location.reload();
-}
- */
 
 /*******************************
  * Show the Gameboard
@@ -221,11 +210,6 @@ var cards = function (shuffle) {
     var wingame = vocArray.length;
     move = 0;
 
-    console.log('beginn cards move', move);
-    console.log('beginn cards rate', rate);
-    console.log('beginn cards bedingung', localStorage.getItem("moves") > move && localStorage.getItem("stars") <= rate);
-    console.log('beginn cards localStorage', localStorage);
-
 
     for (var i = 0; i < shuffle.length; i++) {
         cardcontainer = document.createElement('div');
@@ -258,11 +242,6 @@ var cards = function (shuffle) {
                                     document.querySelector("[data-logo='" + selected[0] + "']").className = "card done";
                                     document.querySelector("[data-logo='" + selected[1] + "']").className = "card done";
 
-
-                                    console.log('move', move);
-                                    console.log('rate', rate);
-                                    console.log('bedingung', localStorage.getItem("moves") > move && localStorage.getItem("stars") <= rate);
-                                    console.log('localStorage', localStorage);
                                 }
                             }
                             if (matched) {
@@ -274,23 +253,12 @@ var cards = function (shuffle) {
                                     rate = stars();
                                     highscore();
 
-                                    console.log('wingame 0 move', move);
-                                    console.log('wingame 0 rate', rate);
-                                    console.log('wingame 0 bedingung', localStorage.getItem("moves") > move && localStorage.getItem("stars") <= rate);
-                                    console.log('wingame 0 localStorage', localStorage);
                                     
-
-
                                 }
                                 clicked = 0;
                                 selected = [];
 
-                                console.log('card matched move', move);
-                                console.log('card matched rate', rate);
-                                console.log('card matched bedingung', localStorage.getItem("moves") > move && localStorage.getItem("stars") <= rate);
-                                console.log('card matched localStorage', localStorage);
-
-
+                              
                                 document.getElementsByClassName('moves')[0].innerHTML = move;
                             } else {
                                 document.querySelector("[data-logo='" + selected[0] + "']").className = "card";
@@ -301,18 +269,11 @@ var cards = function (shuffle) {
                                 ranking--;
                                 rate = stars();
 
-
-                                console.log('card wrong move', move);
-                                console.log('card wrong rate', rate);
-                                console.log('card wrong bedingung', localStorage.getItem("moves") > move && localStorage.getItem("stars") <= rate);
-                                console.log('card wrong localStorage', localStorage);
-
-
                                 document.getElementsByClassName('moves')[0].innerHTML = move;
                             }
                         }
 
-                    }, 1000);
+                    }, 3000);
 
                 }
             }
