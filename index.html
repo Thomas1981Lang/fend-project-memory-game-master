@@ -12,6 +12,8 @@
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="./resources/css/reset.css">
     <link rel="stylesheet" href="./resources/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
     <script src="./resources/js/memory.lib.js"></script>
     <script src="./resources/js/memory.js"></script>
 </head>
@@ -22,7 +24,7 @@
 
     <!-- INFO SECTION Start -->
     <section class="info" id="info">
-        
+
         <h1>The great Memory Game</h1>
         <button class="start">Start</button>
 
@@ -84,8 +86,11 @@
                 </li>
             </ul>
 
-            <span class="moves">0</span> Moves
+            <p class="moves_block">
+                <span class="moves">0</span> Moves</p>
 
+            <p class="seconds_block">
+                <span class="seconds">0</span> Seconds</p>
 
             <div class="restart" id="restart">
                 <i class="fa fa-repeat"></i>

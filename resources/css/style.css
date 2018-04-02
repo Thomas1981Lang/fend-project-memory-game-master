@@ -135,8 +135,10 @@ th:first-child {
 }
 
 .score-panel {
+    display: flex;
+    justify-content: space-between;
     text-align: left;
-    width: 345px;
+    width: 660px;
     margin-bottom: 10px;
 }
 
@@ -157,8 +159,32 @@ th:first-child {
     cursor: pointer;
 }
 
+ .seconds_block {
+    width: 220px;
+    display: flex;
+    flex-direction: row;
+} 
+
+.seconds {
+    text-align: right;
+    width: 60px;
+    padding-right: 5px;
+}
+
+.moves_block {
+    width: 220px;
+    display: flex;
+    flex-direction: row;
+} 
+
+.moves {
+    text-align: right;
+    width: 60px;
+    padding-right: 8px;
+}
+
 .deck {
-    width: 660px;
+    max-width: 660px;
     min-height: 680px;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     padding: 32px;
@@ -204,7 +230,7 @@ th:first-child {
 }
 
 .card {
-    transition: transform 500ms;
+   /*  transition: transform 500ms; */
     transform-style: preserve-3d;
 }
 

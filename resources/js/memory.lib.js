@@ -1,22 +1,22 @@
 /************************************
  * Reset Board
  ***********************************/
-var reset = function () {
+let reset = function () {
     ranking = rankingdefault;
-    var newdeck = document.getElementsByClassName('deck')[0].innerHTML = '';
-    var resetmoves = document.getElementsByClassName('moves')[0].innerHTML = '0';
+    let newdeck = document.getElementsByClassName('deck')[0].innerHTML = '';
+    let resetmoves = document.getElementsByClassName('moves')[0].innerHTML = '0';
     document.getElementById('one').className = "fa fa-star";
     document.getElementById('two').className = "fa fa-star";
     document.getElementById('three').className = "fa fa-star";
-    var clicked = 0;
-    var selected = [];
-    var matched;
-    var wingame = vocArray.length;
+    let clicked = 0;
+    let selected = [];
+    let matched;
+    let wingame = vocArray.length;
     move = 0;
     rate = 3;
 
-    var sArray = singleArray(vocArray);
-    var sCards = shuffle(sArray);
+    let sArray = singleArray(vocArray);
+    let sCards = shuffle(sArray);
     cards(sCards);
 
 }
@@ -26,13 +26,13 @@ var reset = function () {
  * write LocalStorage Data if !exits
  * or queries the data
  ***********************************/
-var highscorewelcome = function () {
+let highscorewelcome = function () {
     if (localStorage.length !== 0) { // sind daten vorhanden?
         //ja
-        var highname = localStorage.getItem("name");
-        var highmoves = localStorage.getItem("moves");
-        var highstars = localStorage.getItem("stars");
-        var highsec = localStorage.getItem("seconds");
+        let highname = localStorage.getItem("name");
+        let highmoves = localStorage.getItem("moves");
+        let highstars = localStorage.getItem("stars");
+        let highsec = localStorage.getItem("seconds");
         localStorage.setItem("name", highname);
         localStorage.setItem("stars", "3");
         localStorage.setItem("moves", highmoves);
@@ -44,7 +44,7 @@ var highscorewelcome = function () {
 
     } else { // nein
         document.getElementById('highscore').innerHTML = '';
-        var createhighscore = document.getElementById('highscore');
+        let createhighscore = document.getElementById('highscore');
         createhighscore.innerHTML = '<td class="highname">Thomas</td><td class="highstars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></td><td class="highmoves">25</td><td class="highsec">100</td>';
         localStorage.setItem("name", "Thomas");
         localStorage.setItem("stars", "3");
@@ -59,7 +59,7 @@ var highscorewelcome = function () {
  * if not Game Over with try again  
  ***********************************/
 
-var highscore = function () {
+let highscore = function () {
 
     if (localStorage.getItem("moves") > move && localStorage.getItem("stars") <= rate) {
         win();
@@ -71,7 +71,7 @@ var highscore = function () {
         getname = document.getElementById('winner');
         getmoves = move;
         getstars = rate;
-        getsec = 100;
+        getsec = seconds;
 
         document.getElementById('btn').onclick = function (event) {
             event.preventDefault();
@@ -100,7 +100,7 @@ var highscore = function () {
 /*******************************
  * Star Rating
  *******************************/
-var stars = function () {
+let stars = function () {
     rate = 3;
     if (ranking == 25) {
         document.getElementById('one').className = "fa fa-star-o";
@@ -123,7 +123,7 @@ var stars = function () {
 /*******************************
  * Show the Gameboard
  *******************************/
-var game = function () {
+let game = function () {
     document.getElementsByTagName('button')[0].onclick = function () {
         document.getElementById('game').className = 'game showElement';
         document.getElementById('info').className = 'game hiddenElement';
@@ -133,7 +133,7 @@ var game = function () {
 /*******************************
  * Show the Winner Message
  ******************************/
-var win = function () {
+let win = function () {
     document.getElementById('info').className = 'game showElement';
     document.getElementById('game').className = 'game hiddenElement';
     document.getElementsByTagName('h1')[0].innerHTML = 'Congratulations';
@@ -143,11 +143,11 @@ var win = function () {
 /*******************************
  * Show the Looser Message
  ******************************/
-var lost = function () {
+let lost = function () {
     document.getElementById('info').className = 'game showElement';
     document.getElementById('game').className = 'game hiddenElement';
     document.getElementsByTagName('h1')[0].innerHTML = 'Game Over';
-    var h2 = document.createElement('h2')
+    let h2 = document.createElement('h2')
     h2.innerHTML = 'I\'m sorry you lost';
     document.getElementsByTagName('h1')[0].appendChild(h2);
     document.getElementsByTagName('button')[0].innerText = 'Try Again';
@@ -160,7 +160,7 @@ var lost = function () {
 /*******************************
  * Activates Reset on click
  ******************************/
-var restart = function () {
+let restart = function () {
     document.getElementById('restart').onclick = function () {
         reset();
     }
@@ -170,8 +170,8 @@ var restart = function () {
  * Split multi array into a single Array 
  * @param {array} multiArray 
  ********************************/
-var singleArray = function (multiArray) {
-    var i, singleArray = [];
+let singleArray = function (multiArray) {
+    let i, singleArray = [];
 
     for (i = 0; i < multiArray.length; i++) {
         singleArray = singleArray.concat(multiArray[i]);
@@ -185,8 +185,8 @@ var singleArray = function (multiArray) {
  * @param {array} singleArray
  * @return {array} shuffled Array
  **********************************/
-var shuffle = function (singleArray) {
-    var currentIndex = singleArray.length,
+let shuffle = function (singleArray) {
+    let currentIndex = singleArray.length,
         temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
@@ -200,18 +200,44 @@ var shuffle = function (singleArray) {
 }
 
 
+/*************************************
+ * Timer for Highscore
+ * 
+ *************************************/
+
+
+let add = function () {
+    seconds++;
+    $('.seconds').html(seconds);
+    timer();
+}
+
+let timer = function () {
+    t = setTimeout(add, 1000);
+}
+
+let cleart = function () {
+    clearTimeout(t);
+}
+
+
 /*********************************
  *  
  */
-var cards = function (shuffle) {
-    var clicked = 0;
-    var selected = [];
-    var matched;
-    var wingame = vocArray.length;
+let cards = function (shuffle) {
+    let clicked = 0;
+    let selected = [];
+    let matched;
+    let wingame = vocArray.length;
     move = 0;
+    cleart();
+    seconds = 0;
+    
 
-
-    for (var i = 0; i < shuffle.length; i++) {
+   
+    
+    
+    for (let i = 0; i < shuffle.length; i++) {
         cardcontainer = document.createElement('div');
         cardcontainer.className = 'card';
         cardcontainer.dataset.logo = shuffle[i];
@@ -224,19 +250,26 @@ var cards = function (shuffle) {
         front.className = 'front';
         front.innerHTML = shuffle[i];
         cardcontainer.appendChild(front);
-
-
+        
+        
         cardcontainer.onclick = function () {
+            if (seconds <= 0) {
+                timer();
+            } else {
+                console.log('erledigt');
+            }
+
+            console.log('seconds',seconds);
             if (this.className == 'card') {
                 if (clicked < 2) {
                     clicked++;
                     this.className = 'card open flipped';
-                    var card = this.dataset.logo;
+                    let card = this.dataset.logo;
                     selected.push(card);
 
                     setTimeout(function () {
                         if (clicked == 2) {
-                            for (var i = 0; i < vocArray.length; i++) {
+                            for (let i = 0; i < vocArray.length; i++) {
                                 if (vocArray[i].indexOf(selected[0]) >= 0 && vocArray[i].indexOf(selected[1]) >= 0) {
                                     matched = true;
                                     document.querySelector("[data-logo='" + selected[0] + "']").className = "card done";
@@ -250,15 +283,16 @@ var cards = function (shuffle) {
                                 wingame--;
                                 document.getElementsByClassName('moves')[0].innerHTML = move;
                                 if (wingame == 0) {
+
                                     rate = stars();
                                     highscore();
 
-                                    
+
                                 }
                                 clicked = 0;
                                 selected = [];
 
-                              
+
                                 document.getElementsByClassName('moves')[0].innerHTML = move;
                             } else {
                                 document.querySelector("[data-logo='" + selected[0] + "']").className = "card";

@@ -2,18 +2,19 @@
  *  Variablen
  */
 
-var rankingdefault = 40;
-var ranking = rankingdefault;
-var move;
-var rate;
-var getname;
-var getmoves;
-var getstars;
-var getsec;
+const rankingdefault = 40;
+let ranking = rankingdefault;
+let move;
+let rate;
+let getname;
+let getmoves;
+let getstars;
+let getsec;
+let t;
+let seconds = 0;
 
 
-
-var vocArray = [
+const vocArray = [
     ['dog', 'Hund'],
     ['cat', 'Katze'],
     ['snake', 'Schlange'],
@@ -33,8 +34,8 @@ window.onload = function () {
     game();
     restart();
 
-    var sArray = singleArray(vocArray);
-    var sCards = shuffle(sArray);
+    let sArray = singleArray(vocArray);
+    let sCards = shuffle(sArray);
     cards(sCards);
 
 } //onload
