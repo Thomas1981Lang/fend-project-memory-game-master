@@ -1,7 +1,30 @@
+/*************************************
+ * Timer for Highscore
+ * 
+ *************************************/
+
+
+let add = function () {
+    seconds++;
+    $('.seconds').html(seconds);
+    timer();
+}
+
+let timer = function () {
+    t = setTimeout(add, 1000);
+}
+
+let cleart = function () {
+    clearTimeout(t);
+}
+
 /************************************
  * Reset Board
  ***********************************/
 let reset = function () {
+    cleart();
+    seconds = 0;
+    $('.seconds').html(seconds);
     ranking = rankingdefault;
     let newdeck = document.getElementsByClassName('deck')[0].innerHTML = '';
     let resetmoves = document.getElementsByClassName('moves')[0].innerHTML = '0';
@@ -14,7 +37,6 @@ let reset = function () {
     let wingame = vocArray.length;
     move = 0;
     rate = 3;
-
     let sArray = singleArray(vocArray);
     let sCards = shuffle(sArray);
     cards(sCards);
@@ -200,25 +222,6 @@ let shuffle = function (singleArray) {
 }
 
 
-/*************************************
- * Timer for Highscore
- * 
- *************************************/
-
-
-let add = function () {
-    seconds++;
-    $('.seconds').html(seconds);
-    timer();
-}
-
-let timer = function () {
-    t = setTimeout(add, 1000);
-}
-
-let cleart = function () {
-    clearTimeout(t);
-}
 
 
 /*********************************
@@ -232,11 +235,11 @@ let cards = function (shuffle) {
     move = 0;
     cleart();
     seconds = 0;
-    
 
-   
-    
-    
+
+
+
+
     for (let i = 0; i < shuffle.length; i++) {
         cardcontainer = document.createElement('div');
         cardcontainer.className = 'card';
@@ -250,8 +253,8 @@ let cards = function (shuffle) {
         front.className = 'front';
         front.innerHTML = shuffle[i];
         cardcontainer.appendChild(front);
-        
-        
+
+
         cardcontainer.onclick = function () {
             if (seconds <= 0) {
                 timer();
@@ -259,7 +262,7 @@ let cards = function (shuffle) {
                 console.log('erledigt');
             }
 
-            console.log('seconds',seconds);
+            console.log('seconds', seconds);
             if (this.className == 'card') {
                 if (clicked < 2) {
                     clicked++;

@@ -19,7 +19,11 @@ body {
     background-image: url(./../images/geometry2.png);
 }
 
-body, input, textarea, button, select {
+body,
+input,
+textarea,
+button,
+select {
     font-family: 'Coda', cursive;
     font-size: 22px;
 }
@@ -93,17 +97,17 @@ p {
     border-radius: 15px;
 }
 
-form{
+form {
     display: flex;
     align-items: center;
-
     height: 5rem;
     margin: 5rem;
 }
 
 label {
-padding: 0 15px;
+    padding: 0 15px;
 }
+
 table,
 th,
 td {
@@ -120,6 +124,29 @@ th {
 
 th:first-child {
     width: 25rem;
+}
+
+@media only screen and (max-width: 558px) {
+    table,
+    th,
+    td {
+        text-align: center;
+        padding: 20px 0;
+    }
+    th:first-child {
+        width: 25rem;
+    }
+}
+
+@media only screen and (max-width: 384px) {
+    h1 {
+        padding: 3rem 0;
+        text-align: center;
+    }
+    h3 {
+        font-size: 1.5rem;
+        margin: 3rem 0;
+    }
 }
 
 /****************************************
@@ -159,11 +186,11 @@ th:first-child {
     cursor: pointer;
 }
 
- .seconds_block {
+.seconds_block {
     width: 220px;
     display: flex;
     flex-direction: row;
-} 
+}
 
 .seconds {
     text-align: right;
@@ -175,7 +202,7 @@ th:first-child {
     width: 220px;
     display: flex;
     flex-direction: row;
-} 
+}
 
 .moves {
     text-align: right;
@@ -213,7 +240,6 @@ th:first-child {
     transition: transform 500ms;
 }
 
-
 .deck .card.open {
     transform: rotateY( 180deg);
     cursor: default;
@@ -230,7 +256,7 @@ th:first-child {
 }
 
 .card {
-   /*  transition: transform 500ms; */
+    /*  transition: transform 500ms; */
     transform-style: preserve-3d;
 }
 
@@ -254,14 +280,67 @@ th:first-child {
     align-items: center;
 }
 
+@media only screen and (max-width: 720px) {
+    .score-panel {
+        width: 100%;
+    }
+    .score-panel .stars {
+        padding-left: 10px;
+    }
+    .score-panel .restart {
+        padding-right: 10px;
+    }
+    .deck {
+        justify-content: space-around;
+    }
+    .deck .card {
+        margin: 10px;
+    }
+}
 
+@media only screen and (max-width: 660px) {
+    .deck {
+        width: 100%;
+        min-height: 680px;
+    }
+    p {
+        font-size: 1.5rem;
+    }
+    .fa-repeat,
+    .fa-star {
+        font-size: 1.2rem;
+    }
+    .seconds_block {
+        width: 150px;
+        padding-right: 13px;
+    }
+    .seconds {
+        text-align: right;
+        width: 60px;
+        padding-right: 5px;
+    }
+    .moves_block {
+        width: 120px;
+    }
+}
 
-
-
-
-
-
-
-
-
-
+@media only screen and (max-width: 410px) {
+    p {
+        font-size: 1rem;
+    }
+    .fa-repeat,
+    .fa-star {
+        font-size: 1rem;
+    }
+    .seconds_block {
+        width: 98px;
+    }
+    .seconds {
+        text-align: right;
+        width: 60px;
+        padding-right: 5px;
+    }
+    .moves_block {
+        width: 98px;
+    }
+}
