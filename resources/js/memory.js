@@ -38,4 +38,4 @@ window.onload = function () {
     let sCards = shuffle(sArray);
     cards(sCards);
 
-} //onload
+}; //onload

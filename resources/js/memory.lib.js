@@ -8,15 +8,15 @@ let add = function () {
     seconds++;
     $('.seconds').html(seconds);
     timer();
-}
+};
 
 let timer = function () {
     t = setTimeout(add, 1000);
-}
+};
 
 let cleart = function () {
     clearTimeout(t);
-}
+};
 
 /************************************
  * Reset Board
@@ -41,7 +41,7 @@ let reset = function () {
     let sCards = shuffle(sArray);
     cards(sCards);
 
-}
+};
 
 /************************************
  * Highscore initialization
@@ -73,7 +73,8 @@ let highscorewelcome = function () {
         localStorage.setItem("moves", "25");
         localStorage.setItem("seconds", "100");
     } // das nächste mal sollten Daten vorhanden sein
-}
+    $('.gameinfo').hide();
+};
 
 /***********************************
  * Enter Highscore if better save
@@ -108,15 +109,15 @@ let highscore = function () {
             document.getElementsByClassName('highmoves')[0].innerHTML = localStorage.getItem('moves');
             document.getElementsByClassName('highsec')[0].innerHTML = localStorage.getItem('seconds');
             reset();
-        }
+        };
 
 
 
     } else {
         lost();
-        document.getElementsByTagName('h2')[0].innerHTML = 'I\'m sorry you are not good enough <br>&#128532;<br>Try to be better next time<br>&#128170;'
+        document.getElementsByTagName('h2')[0].innerHTML = 'I\'m sorry you are not good enough <br>&#128532;<br>Try to be better next time<br>&#128170;';
     }
-} // highscore
+}; // highscore
 
 
 /*******************************
@@ -130,28 +131,56 @@ let stars = function () {
         return rate;
     } else if (ranking == 18) {
         document.getElementById('two').className = "fa fa-star-o";
-        rate = 1
+        rate = 1;
         return rate;
     } else if (ranking == 10) {
         document.getElementById('three').className = "fa fa-star-o";
-        rate = 0
-        return rate;
-    } else if (ranking == 0) {
+        rate = 0;
         lost();
+        return rate;
     }
     return rate;
-}
+};
 
-/*******************************
- * Show the Gameboard
- *******************************/
+
 let game = function () {
     document.getElementsByTagName('button')[0].onclick = function () {
         document.getElementById('game').className = 'game showElement';
         document.getElementById('info').className = 'game hiddenElement';
-    }
-}
+    };
+};
 
+/*******************************
+ * Show the Gameboard
+ *******************************/
+
+let info = function () {
+    $('.gameinfo').show();
+    switch (rate) {
+        case 3:
+        console.log('rate 3',rate);
+        $('.info_star')
+        .html("<i class='fa fa-star'></i>" + "<i class='fa fa-star' ></i>" + "<i class='fa fa-star'></i>");
+        break;
+        case 2:
+        console.log('rate 2',rate);
+        $('.info_star')
+        .html("<i class='fa fa-star'></i>" + "<i class='fa fa-star' ></i>" + "<i class='fa fa-star-o'></i>");
+        break;
+        case 1:
+        console.log('rate 1',rate);
+        $('.info_star')
+        .html("<i class='fa fa-star'></i>" + "<i class='fa fa-star-o' ></i>" + "<i class='fa fa-star-o'></i>");
+        break;
+        default: 
+        console.log('rate default',rate);
+        $('.info_star')
+            .html("<i class='fa fa-star-o'></i>" + "<i class='fa fa-star-o' ></i>" + "<i class='fa fa-star-o'></i>");
+            break;
+    }
+    $('.info_moves').html(move);
+    $('.info_time').html(seconds);
+};
 /*******************************
  * Show the Winner Message
  ******************************/
@@ -160,7 +189,8 @@ let win = function () {
     document.getElementById('game').className = 'game hiddenElement';
     document.getElementsByTagName('h1')[0].innerHTML = 'Congratulations';
     document.getElementsByTagName('button')[0].className = 'hiddenElement';
-}
+    info();
+};
 
 /*******************************
  * Show the Looser Message
@@ -169,15 +199,16 @@ let lost = function () {
     document.getElementById('info').className = 'game showElement';
     document.getElementById('game').className = 'game hiddenElement';
     document.getElementsByTagName('h1')[0].innerHTML = 'Game Over';
-    let h2 = document.createElement('h2')
+    let h2 = document.createElement('h2');
     h2.innerHTML = 'I\'m sorry you lost';
     document.getElementsByTagName('h1')[0].appendChild(h2);
     document.getElementsByTagName('button')[0].innerText = 'Try Again';
     document.getElementsByClassName('highname')[0].innerHTML = localStorage.getItem('name');
     document.getElementsByClassName('highmoves')[0].innerHTML = localStorage.getItem('moves');
     document.getElementsByClassName('highsec')[0].innerHTML = localStorage.getItem('seconds');
+    info();
     reset();
-}
+};
 
 /*******************************
  * Activates Reset on click
@@ -185,8 +216,8 @@ let lost = function () {
 let restart = function () {
     document.getElementById('restart').onclick = function () {
         reset();
-    }
-}
+    };
+};
 
 /********************************
  * Split multi array into a single Array 
@@ -200,7 +231,7 @@ let singleArray = function (multiArray) {
     }
 
     return singleArray;
-}
+};
 
 /***********************************
  * Shuffle a normal single Array 
@@ -219,7 +250,7 @@ let shuffle = function (singleArray) {
         singleArray[randomIndex] = temporaryValue;
     }
     return singleArray;
-}
+};
 
 
 
@@ -228,6 +259,9 @@ let shuffle = function (singleArray) {
  *  
  */
 let cards = function (shuffle) {
+    let cardcontainer;
+    let back;
+    let front;
     let clicked = 0;
     let selected = [];
     let matched;
@@ -285,7 +319,7 @@ let cards = function (shuffle) {
                                 move++;
                                 wingame--;
                                 document.getElementsByClassName('moves')[0].innerHTML = move;
-                                if (wingame == 0) {
+                                if (wingame === 0) {
 
                                     rate = stars();
                                     highscore();
@@ -314,6 +348,6 @@ let cards = function (shuffle) {
 
                 }
             }
-        } // onclick
+        }; // onclick
     } // for shuffel.lenght
-} // cards()
+}; // cards()
